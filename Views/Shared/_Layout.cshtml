@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ACC</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- DataTables CSS
+
+       <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+       <link href="~/Content/buttons.dataTables.min.css" rel="stylesheet" />
+
+    -->
+    <!-- dataTables   -->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Content/select2/select2.min.css" />
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark primary-color" dir="rtl">
+        @Html.ActionLink(' ' + Resources.ACC.Home, "Index", "Home", new { area = "" }, new { @class = "navbar-brand fa fa-home" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Customer, "Index", "Customer", new { area = "",max_results=30 }, new { @class = "nav-link fa fa-users" })
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("CRM", "Index2", "Customer", new { area = "",max_results=30 }, new { @class = "nav-link fa fa-users" })
+                    </li>
+                    <li class="nav-item">
+
+                        @Html.ActionLink(' ' + Resources.ACC.Orders, "Index", "Orders", new { area = "",max_results=30 }, new { @class = "nav-link fa fa-archive" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Vouchers, "Index", "Vouchers", new { area = "",max_results=30 }, new { @class = "nav-link fa fa-money" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Transactions, "Index", "Transactions", new { area = "" ,max_results=30}, new { @class = "nav-link fa fa-cog" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Items, "Index", "Items", new { area = "" ,max_results=30}, new { @class = "nav-link fa fa-list" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.SalesMan, "Index", "Sales_Man", new { area = "" ,max_results=30}, new { @class = "nav-link fa fa-user" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Accounts, "Index", "Accounts", new { area = "",max_results=30 }, new { @class = "nav-link fa fa-cogs" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(' ' + Resources.ACC.Login, "Login", "Account", new { area = "" }, new { @class = "nav-link fa fa-user-plus" })
+                    </li>
+
+                }
+                </li>
+
+</div>
+    </nav>
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - TOP</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Scripts/select2/select2.full.min.js" type="text/javascript"></script>
+
+
+    <!-- DataTables JS -->
+    @*<script src="~/Content/MDB/js/addons/datatables.min.js" type="text/javascript"></script>*@
+
+
+
+    <script src="~/Scripts/toastr.js"></script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#example").DataTable({
+                "ordering": false
+            });
+            $("#print").DataTable({
+                "paging": false,
+                "ordering": false,
+                "searching": false,
+                "info": false
+            });
+            //Initialize Select2 Elements
+            $(".select2").select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+             $("#submit").click(function (e) {
+                $(this).prop("disable", true);
+                 //$('#processing').toggle();
+                 $(this).css("cursor", "not-allowed");
+
+            });
+                if ('@TempData["msg"]' == "Create") {
+                   toastr.optionsOverride = 'positionclass = "toast-bottom-full-width"';
+                   toastr.options.positionClass = 'toast-bottom-full-width';
+                    toastr.success('تم الحفظ بنجاح', '');
+                }
+                else if ('@TempData["msg"]' == "Error") {
+                     toastr.optionsOverride = 'positionclass = "toast-bottom-full-width"';
+                   toastr.options.positionClass = 'toast-bottom-full-width';
+                    toastr.error('خطاء في التخزين', '');
+                }
+                else if ('@TempData["msg"]' == "Edit") {
+                     toastr.optionsOverride = 'positionclass = "toast-bottom-full-width"';
+                   toastr.options.positionClass = 'toast-bottom-full-width';
+                    toastr.warning('تم التعديل بنجاح', '');
+                }
+                else if ('@TempData["msg"]' == "Delete") {
+                     toastr.optionsOverride = 'positionclass = "toast-bottom-full-width"';
+                     toastr.options.positionClass = 'toast-bottom-full-width';
+                    toastr.warning('تم الحذف بنجاح', '');
+                }
+            });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,122 @@
+﻿@model ACC.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Insert_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Insert_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FK_Transaction_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FK_Transaction_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Update_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Update_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Delete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Is_Delete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delete_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delete_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account.Account_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account.Account_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction_Types.Transaction_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transaction_Types.Transaction_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser1.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser1.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser2.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser2.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

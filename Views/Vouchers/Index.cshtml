@@ -1,0 +1,110 @@
+﻿@model IEnumerable<ACC.Models.Voucher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="jumbotron">
+
+        <h1 class="card-title text-center">@Resources.ACC.Vouchers </h1>
+        <hr />
+        <!-- Search form -->
+        @using (Html.BeginForm())
+        {
+            <div dir="rtl">
+                <div class="form-group row">
+                    
+                        <div class="col-md-1">
+                            @Html.ActionLink("ALL ", "Index",  new { area = "", max_results = 1000000 }, new { @class = "btn btn btn-secondary btn-sm" })
+                        </div>
+                        <div class="col-md-2">
+                            <input class="btn blue-gradient btn-sm " type="submit" value="بحث" />
+                        </div>
+                        <div class="col-md-4">
+                            @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.ActionLink(" ", "Create", new { area = "" }, new { @class = "btn btn-success btn-sm fa fa-plus pull-left" })
+
+                        </div>
+                    </div>
+            </div>
+        }
+        <hr />
+
+        <table dir="rtl" id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Voucher_Types.Voucher_Type)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Voucher_Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Account.Account_Name)
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Voucher_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Amount)
+                    </th>
+
+
+
+                    <th></th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Voucher_Types.Voucher_Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Voucher_Date)
+                        </td>
+                        <td>
+                            <h3>        @Html.DisplayFor(modelItem => item.Account.Account_Name)</h3>
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Voucher_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+
+                        <td>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("System") || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink(" ", "Edit", new { id = item.PK_Voucher }, new { @class = "btn btn-primary btn-sm fa fa-pencil" })  
+                                    @Html.ActionLink(" ", "Delete", new { id = item.PK_Voucher }, new { @class = "btn btn-danger btn-sm fa fa-eraser" })
+                                }
+                            }
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+ 
+
+ 
+ 
+ 
+
+ 

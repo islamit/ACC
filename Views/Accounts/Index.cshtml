@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ACC.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1 class="card-title text-center">@Resources.ACC.Accounts </h1>
+<hr />
+ @Html.ActionLink("ALL ", "Index", new { area = "", max_results = 1000000 }, new { @class = "btn btn btn-secondary btn-sm pull-right" })
+<br />
+<hr />
+<table dir="rtl" id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DP_sum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cr_sum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account_Types.Account_Type)
+            </th>
+
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DP_sum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cr_sum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account_Types.Account_Type)
+            </td>
+
+
+        </tr>
+    }
+
+</table>

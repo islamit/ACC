@@ -1,0 +1,83 @@
+﻿@model ACC.Models.Voucher
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h1 class="card-title text-center">@Resources.ACC.Vouchers </h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                <select class="form-control pull-right" id="FK_Voucher_Type" name="FK_Voucher_Type">
+                    <option value="2">قبض</option>
+                    <option value="1">صرف</option>
+                </select>
+            </div>
+            @Html.LabelFor(model => model.FK_Voucher_Type, Resources.ACC.FK_Voucher_Type, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+            @Html.ValidationMessageFor(model => model.FK_Voucher_Type, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Voucher_Num, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Voucher_Num, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Voucher_Num, htmlAttributes: new { @class = "control-label col-md-2  pull-right" })
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10">
+                <input type="date" id="Voucher_Date" value="@DateTime.Now.ToShortDateString()" name="Voucher_Date" class="form-control pull-right" />
+
+                @Html.ValidationMessageFor(model => model.Voucher_Date, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Voucher_Date, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+        <div class="form-group row" dir="rtl">
+            @Html.LabelFor(model => model.FK_Account, Resources.ACC.FK_Account, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+
+            <div class="col-md-3">
+                @Html.DropDownList("FK_Account", null, htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.FK_Account, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Voucher_Name, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Voucher_Name, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Voucher_Name, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="card-footer">
+
+            <input type="submit" id="submit" value="@Resources.ACC.Save" class="btn btn-default pull-left " />
+ 
+        </div>
+
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    
+}

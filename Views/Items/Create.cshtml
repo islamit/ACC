@@ -1,0 +1,52 @@
+﻿@model ACC.Models.Item
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Item</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="col-md-4 mb-4">
+
+        <div class="md-form">
+            <input type="text" id="Item_Name" name="Item_Name" class="form-control">
+            <label for="Item_Name" class="">الصنف</label>
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+
+        <div class="md-form">
+            <input type="text" id="Item_Price" name="Item_Price" class="form-control">
+            <label for="Item_Price" class="">السعر</label>
+        </div>
+
+    </div>
+  
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit"  id="submit"  value="@Resources.ACC.Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

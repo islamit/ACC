@@ -1,0 +1,58 @@
+﻿USE [ACC]
+GO
+/****** Object:  Trigger [dbo].[Customer_tr]    Script Date: 4/3/2020 7:46:59 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER  [dbo].[Customer_tr]
+   ON  [dbo].[Customer] 
+   AFTER  INSERT,DELETE,UPDATE 
+AS 
+BEGIN
+DECLARE @Customer_Name   nvarchar(max),
+        @UserID      nvarchar(128),
+		@PK_Customer  nvarchar(128) , 
+		@PK          nvarchar(128),
+		@FK_Account  nvarchar(128)
+SET NOCOUNT ON;
+
+   
+	
+    
+ 
+        IF EXISTS(SELECT * FROM inserted  where Is_Delete is null or Is_Delete='0')
+			BEGIN
+            -- INSERT
+			SELECT  @PK_Customer=PK_Customer,@Customer_Name=[Customer_Name],@UserID=[FK_Insert_User] from INSERTED
+            EXEC	Accounts_Insert
+					@PK = @PK OUTPUT,
+					@Account_Name = @Customer_Name,
+					@FK_Account_Type = 1,
+					@FK_Account_Category = 1,
+					@UserID = @UserID
+			UPDATE Customer 
+			set FK_Account = @PK
+			Where PK_Customer=@PK_Customer
+			END
+        ELSE IF  EXISTS(SELECT * FROM inserted  where not FK_Update_User  is null )
+            BEGIN
+            -- UPDATE
+			SELECT @Customer_Name=[Customer_Name],
+			@UserID=[FK_Update_User],
+			@FK_Account=FK_Account from INSERTED
+            exec [dbo].[Accounts_UPDATE] @FK_Account,@Customer_Name,1,1,@UserID
+			END
+		 ELSE IF  EXISTS(SELECT * FROM inserted  where not FK_Delete_User is null )
+		BEGIN
+        -- DELETE
+		SELECT  @FK_Account=FK_Account,@UserID=[FK_Insert_User] from deleted
+        EXEC	[dbo].[Accounts_Delete]
+		@PK_Account = @FK_Account,
+		@UserID = @UserID
+	End
+
+
+    END
+
+ 

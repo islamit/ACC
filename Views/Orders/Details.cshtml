@@ -1,0 +1,75 @@
+﻿@model ACC.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Resources.ACC.Orders    :   @Html.DisplayFor(model => model.PK_Order) - @Html.DisplayFor(model => model.Account.Account_Name)</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GTotal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GTotal)
+        </dd>
+    </dl>
+</div>
+<h2>
+    @Resources.ACC.OrderItem
+</h2>
+
+<p>
+    @Html.ActionLink(" ", "Add", "Orders", new { FK_Order = Model.PK_Order }, new { @class = "btn btn-success fa fa-plus" })
+</p>
+<table class="table table-hover">
+    <tr class="table-active">
+
+        <th>
+            الصنف
+        </th>
+        <th>
+            الكمية
+        </th>
+        <th>
+            سعر الوحدة
+        </th>
+        <th>
+            الاجمالي
+        </th>
+        <th></th>
+    </tr>
+ 
+    @foreach (ACC.Models.OrderItem item in ViewBag.orderItem)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Item_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LineValue)
+            </td>
+
+            <td>
+                @Html.ActionLink(" ", "Update", "Orders", new { id = item.PK_OrderItem }, new { @class = "btn btn-primary btn-sm fa fa-pencil" })|
+                @Html.ActionLink(" ", "Remove", "Orders", new { id = item.PK_OrderItem }, new { @class = "btn btn-danger btn-sm fa fa-eraser" })
+            </td>
+        </tr>
+    }
+
+</table>

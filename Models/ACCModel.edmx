@@ -1,0 +1,2289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ACCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account_Categories">
+          <Key>
+            <PropertyRef Name="PK_Account_Category" />
+          </Key>
+          <Property Name="PK_Account_Category" Type="tinyint" Nullable="false" />
+          <Property Name="Account_Category" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account_Types">
+          <Key>
+            <PropertyRef Name="PK_Account_Type" />
+          </Key>
+          <Property Name="PK_Account_Type" Type="tinyint" Nullable="false" />
+          <Property Name="Account_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="PK_Account" />
+          </Key>
+          <Property Name="PK_Account" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Account_Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Balance" Type="money" />
+          <Property Name="FK_Account_Type" Type="tinyint" Nullable="false" />
+          <Property Name="FK_Account_Category" Type="tinyint" Nullable="false" />
+          <Property Name="Insert_Date" Type="datetime" />
+          <Property Name="FK_Insert_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="FK_Update_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Is_Delete" Type="bit" />
+          <Property Name="Delete_Date" Type="datetime" />
+          <Property Name="FK_Delete_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="DP_sum" Type="money" Nullable="false" />
+          <Property Name="cr_sum" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="PK_Customer" />
+          </Key>
+          <Property Name="PK_Customer" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="FileNum" Type="bigint" />
+          <Property Name="IDCard" Type="bigint" />
+          <Property Name="Mobile1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mobile2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="FK_Account" Type="nvarchar" MaxLength="128" />
+          <Property Name="FK_Customer_Type" Type="tinyint" />
+          <Property Name="FK_Insert_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Insert_Date" Type="datetime" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="FK_Update_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Is_Delete" Type="bit" />
+          <Property Name="Delete_Date" Type="datetime" />
+          <Property Name="FK_Delete_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Balance" Type="money" />
+        </EntityType>
+        <EntityType Name="Customers_Type">
+          <Key>
+            <PropertyRef Name="PK_Customer_Type" />
+          </Key>
+          <Property Name="PK_Customer_Type" Type="tinyint" Nullable="false" />
+          <Property Name="Customer_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="PK_Item" />
+          </Key>
+          <Property Name="PK_Item" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Item_Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="PK_Order" />
+          </Key>
+          <Property Name="PK_Order" Type="bigint" Nullable="false" />
+          <Property Name="FK_Sales_Man" Type="tinyint" Nullable="false" />
+          <Property Name="OrderNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FK_Account" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Order_Date" Type="datetime" Nullable="false" />
+          <Property Name="Sponsor" Type="nvarchar" MaxLength="128" />
+          <Property Name="Sponsor_Info" Type="nvarchar" MaxLength="128" />
+          <Property Name="FK_Insert_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="FK_Transaction" Type="bigint" />
+          <Property Name="Payment" Type="money" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="256" />
+          <Property Name="FK_Voucher" Type="bigint" />
+          <Property Name="Voucher_Num" Type="int" />
+          <Property Name="Insert_Date" Type="datetime" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="FK_Update_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Is_Delete" Type="bit" />
+          <Property Name="Delete_Date" Type="datetime" />
+          <Property Name="FK_Delete_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="GTotal" Type="money" />
+        </EntityType>
+        <EntityType Name="OrderItems">
+          <Key>
+            <PropertyRef Name="PK_OrderItem" />
+          </Key>
+          <Property Name="PK_OrderItem" Type="bigint" Nullable="false" />
+          <Property Name="FK_Order" Type="bigint" Nullable="false" />
+          <Property Name="FK_Item" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="LineValue" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sales_Man">
+          <Key>
+            <PropertyRef Name="PK_Sales_Man" />
+          </Key>
+          <Property Name="PK_Sales_Man" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sales_Man_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction_Types">
+          <Key>
+            <PropertyRef Name="PK_Transaction_Type" />
+          </Key>
+          <Property Name="PK_Transaction_Type" Type="tinyint" Nullable="false" />
+          <Property Name="Transaction_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="PK_Transaction" />
+          </Key>
+          <Property Name="PK_Transaction" Type="bigint" Nullable="false" />
+          <Property Name="FK_Transaction_Type" Type="tinyint" Nullable="false" />
+          <Property Name="Transaction_Date" Type="date" Nullable="false" />
+          <Property Name="FK_Account" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Transaction_Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="FK_Insert_User" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Insert_Date" Type="datetime" />
+          <Property Name="FK_Transaction_Status" Type="tinyint" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="FK_Update_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Is_Delete" Type="bit" />
+          <Property Name="Delete_Date" Type="datetime" />
+          <Property Name="FK_Delete_User" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Voucher_Types">
+          <Key>
+            <PropertyRef Name="PK_Voucher_Type" />
+          </Key>
+          <Property Name="PK_Voucher_Type" Type="tinyint" Nullable="false" />
+          <Property Name="Voucher_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vouchers">
+          <Key>
+            <PropertyRef Name="PK_Voucher" />
+          </Key>
+          <Property Name="PK_Voucher" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_Voucher_Type" Type="tinyint" />
+          <Property Name="Voucher_Num" Type="int" />
+          <Property Name="Voucher_Date" Type="date" />
+          <Property Name="FK_Account" Type="nvarchar" MaxLength="128" />
+          <Property Name="Voucher_Name" Type="nvarchar" MaxLength="80" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="FK_Insert_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="FK_Transaction" Type="bigint" />
+          <Property Name="FK_Transaction_Type" Type="tinyint" />
+          <Property Name="FK_Voucher_Status" Type="tinyint" />
+          <Property Name="Insert_Date" Type="datetime" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="FK_Update_User" Type="nvarchar" MaxLength="128" />
+          <Property Name="Is_Delete" Type="bit" />
+          <Property Name="Delete_Date" Type="datetime" />
+          <Property Name="FK_Delete_User" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_Accounts_Account_Categories">
+          <End Role="Account_Categories" Type="Self.Account_Categories" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account_Categories">
+              <PropertyRef Name="PK_Account_Category" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="FK_Account_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Account_Types">
+          <End Role="Account_Types" Type="Self.Account_Types" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account_Types">
+              <PropertyRef Name="PK_Account_Type" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="FK_Account_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Customers_Type">
+          <End Role="Customers_Type" Type="Self.Customers_Type" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers_Type">
+              <PropertyRef Name="PK_Customer_Type" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FK_Customer_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Sales_Man">
+          <End Role="Sales_Man" Type="Self.Sales_Man" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sales_Man">
+              <PropertyRef Name="PK_Sales_Man" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FK_Sales_Man" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="PK_Item" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="FK_Item" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="PK_Order" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="FK_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Insert_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Delete_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Transaction_Types">
+          <End Role="Transaction_Types" Type="Self.Transaction_Types" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction_Types">
+              <PropertyRef Name="PK_Transaction_Type" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Transaction_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Voucher_Types">
+          <End Role="Voucher_Types" Type="Self.Voucher_Types" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher_Types">
+              <PropertyRef Name="PK_Voucher_Type" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="FK_Voucher_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Customer_AddEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Customer" Type="bigint" Mode="In" />
+          <Parameter Name="Customer_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="FileNum" Type="bigint" Mode="In" />
+          <Parameter Name="IDCard" Type="bigint" Mode="In" />
+          <Parameter Name="Mobile1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mobile2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Customer_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Customer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Customer" Type="bigint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Customer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Customer_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="FileNum" Type="bigint" Mode="In" />
+          <Parameter Name="IDCard" Type="bigint" Mode="In" />
+          <Parameter Name="Mobile1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mobile2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Customer_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Customer_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Customer_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Customer_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="FileNum" Type="bigint" Mode="In" />
+          <Parameter Name="IDCard" Type="bigint" Mode="In" />
+          <Parameter Name="Mobile1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Mobile2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Customer_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+          <Parameter Name="PK_Customer" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Order_AddEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Order" Type="bigint" Mode="In" />
+          <Parameter Name="FK_Sales_Man" Type="tinyint" Mode="In" />
+          <Parameter Name="OrderNo" Type="varchar" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Order_Date" Type="datetime" Mode="In" />
+          <Parameter Name="Sponsor" Type="nvarchar" Mode="In" />
+          <Parameter Name="Sponsor_Info" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+          <Parameter Name="Payment" Type="money" Mode="In" />
+          <Parameter Name="Notes" Type="nvarchar" Mode="In" />
+          <Parameter Name="Voucher_Num" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Order_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Order" Type="bigint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="OrderItems_AddEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Order" Type="bigint" Mode="In" />
+          <Parameter Name="PK_OrderItem" Type="bigint" Mode="In" />
+          <Parameter Name="FK_Item" Type="int" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="OrderItems_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_OrderItem" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="OrderItems_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Order" Type="bigint" Mode="In" />
+          <Parameter Name="FK_Item" Type="int" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="OrderItems_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OrderItems_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Item" Type="int" Mode="In" />
+          <Parameter Name="Quantity" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="decimal" Mode="In" />
+          <Parameter Name="PK_OrderItem" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Transactions_AddEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Transaction" Type="int" Mode="InOut" />
+          <Parameter Name="FK_Transaction_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Transaction_Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Transaction_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Transactions_Amount_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Transaction" Type="bigint" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+        </Function>
+        <Function Name="Transactions_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Transaction" Type="int" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Transactions_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Transaction" Type="int" Mode="InOut" />
+          <Parameter Name="FK_Transaction_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Transaction_Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Transaction_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Transactions_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Transactions_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Transaction" Type="int" Mode="In" />
+          <Parameter Name="Transaction_Date" Type="date" Mode="In" />
+          <Parameter Name="Transaction_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Vouchers_AddEdit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Voucher" Type="bigint" Mode="In" />
+          <Parameter Name="FK_Voucher_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Voucher_Num" Type="int" Mode="In" />
+          <Parameter Name="Voucher_Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Voucher_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Vouchers_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Voucher" Type="bigint" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Vouchers_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Voucher_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Voucher_Num" Type="int" Mode="In" />
+          <Parameter Name="Voucher_Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Voucher_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Vouchers_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Vouchers_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Voucher_Type" Type="tinyint" Mode="In" />
+          <Parameter Name="Voucher_Num" Type="int" Mode="In" />
+          <Parameter Name="Voucher_Date" Type="date" Mode="In" />
+          <Parameter Name="FK_Account" Type="nvarchar" Mode="In" />
+          <Parameter Name="Voucher_Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Amount" Type="money" Mode="In" />
+          <Parameter Name="FK_User" Type="nvarchar" Mode="In" />
+          <Parameter Name="PK_Voucher" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="ACCModelStoreContainer">
+          <EntitySet Name="Account_Categories" EntityType="Self.Account_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account_Types" EntityType="Self.Account_Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers_Type" EntityType="Self.Customers_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales_Man" EntityType="Self.Sales_Man" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction_Types" EntityType="Self.Transaction_Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher_Types" EntityType="Self.Voucher_Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounts_Account_Categories" Association="Self.FK_Accounts_Account_Categories">
+            <End Role="Account_Categories" EntitySet="Account_Categories" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Account_Types" Association="Self.FK_Accounts_Account_Types">
+            <End Role="Account_Types" EntitySet="Account_Types" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Customers_Type" Association="Self.FK_Customer_Customers_Type">
+            <End Role="Customers_Type" EntitySet="Customers_Type" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Accounts" Association="Self.FK_Order_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Sales_Man" Association="Self.FK_Order_Sales_Man">
+            <End Role="Sales_Man" EntitySet="Sales_Man" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Item" Association="Self.FK_OrderItems_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Order" Association="Self.FK_OrderItems_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Accounts" Association="Self.FK_Transactions_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers" Association="Self.FK_Transactions_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers1" Association="Self.FK_Transactions_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers2" Association="Self.FK_Transactions_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Transaction_Types" Association="Self.FK_Transactions_Transaction_Types">
+            <End Role="Transaction_Types" EntitySet="Transaction_Types" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Accounts" Association="Self.FK_Vouchers_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Voucher_Types" Association="Self.FK_Vouchers_Voucher_Types">
+            <End Role="Voucher_Types" EntitySet="Voucher_Types" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ACCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account_Types">
+          <Key>
+            <PropertyRef Name="PK_Account_Type" />
+          </Key>
+          <Property Name="PK_Account_Type" Type="Byte" Nullable="false" />
+          <Property Name="Account_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="ACCModel.FK_Accounts_Account_Types" FromRole="Account_Types" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_AspNetUsers" FromRole="AspNetUsers" ToRole="Transactions" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transactions_AspNetUsers1" FromRole="AspNetUsers" ToRole="Transactions" />
+          <NavigationProperty Name="Transactions2" Relationship="Self.FK_Transactions_AspNetUsers2" FromRole="AspNetUsers" ToRole="Transactions" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="PK_Customer" />
+          </Key>
+          <Property Name="PK_Customer" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileNum" Type="Int64" />
+          <Property Name="IDCard" Type="Int64" />
+          <Property Name="Mobile1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Customer_Type" Type="Byte" />
+          <Property Name="FK_Insert_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Insert_Date" Type="DateTime" Precision="3" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Update_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Delete" Type="Boolean" />
+          <Property Name="Delete_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Delete_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Customers_Type" Relationship="Self.FK_Customer_Customers_Type" FromRole="Customer" ToRole="Customers_Type" />
+        </EntityType>
+        <EntityType Name="Customers_Type">
+          <Key>
+            <PropertyRef Name="PK_Customer_Type" />
+          </Key>
+          <Property Name="PK_Customer_Type" Type="Byte" Nullable="false" />
+          <Property Name="Customer_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Customers_Type" FromRole="Customers_Type" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="PK_Item" />
+          </Key>
+          <Property Name="PK_Item" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Item_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Item" FromRole="Item" ToRole="OrderItems" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="PK_OrderItem" />
+          </Key>
+          <Property Name="PK_OrderItem" Type="Int64" Nullable="false" />
+          <Property Name="FK_Order" Type="Int64" Nullable="false" />
+          <Property Name="FK_Item" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="LineValue" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_OrderItems_Item" FromRole="OrderItems" ToRole="Item" />
+          <NavigationProperty Name="Order" Relationship="ACCModel.FK_OrderItems_Order" FromRole="OrderItem" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Sales_Man">
+          <Key>
+            <PropertyRef Name="PK_Sales_Man" />
+          </Key>
+          <Property Name="PK_Sales_Man" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sales_Man_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="ACCModel.FK_Order_Sales_Man" FromRole="Sales_Man" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Transaction_Types">
+          <Key>
+            <PropertyRef Name="PK_Transaction_Type" />
+          </Key>
+          <Property Name="PK_Transaction_Type" Type="Byte" Nullable="false" />
+          <Property Name="Transaction_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transactions_Transaction_Types" FromRole="Transaction_Types" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="PK_Transaction" />
+          </Key>
+          <Property Name="PK_Transaction" Type="Int64" Nullable="false" />
+          <Property Name="FK_Transaction_Type" Type="Byte" Nullable="false" />
+          <Property Name="Transaction_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FK_Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Transaction_Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FK_Insert_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Insert_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Transaction_Status" Type="Byte" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Update_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Delete" Type="Boolean" />
+          <Property Name="Delete_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Delete_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Transactions_AspNetUsers" FromRole="Transactions" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_Transactions_AspNetUsers1" FromRole="Transactions" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser2" Relationship="Self.FK_Transactions_AspNetUsers2" FromRole="Transactions" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Transaction_Types" Relationship="Self.FK_Transactions_Transaction_Types" FromRole="Transactions" ToRole="Transaction_Types" />
+          <NavigationProperty Name="Account" Relationship="ACCModel.FK_Transactions_Accounts" FromRole="Transaction" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Voucher_Types">
+          <Key>
+            <PropertyRef Name="PK_Voucher_Type" />
+          </Key>
+          <Property Name="PK_Voucher_Type" Type="Byte" Nullable="false" />
+          <Property Name="Voucher_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_Voucher_Types" FromRole="Voucher_Types" ToRole="Vouchers" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="PK_Voucher" />
+          </Key>
+          <Property Name="PK_Voucher" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Voucher_Type" Type="Byte" />
+          <Property Name="Voucher_Num" Type="Int32" />
+          <Property Name="Voucher_Date" Type="DateTime" Precision="0" />
+          <Property Name="FK_Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Voucher_Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FK_Insert_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Transaction" Type="Int64" />
+          <Property Name="FK_Transaction_Type" Type="Byte" />
+          <Property Name="FK_Voucher_Status" Type="Byte" />
+          <Property Name="Insert_Date" Type="DateTime" Precision="3" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Update_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Delete" Type="Boolean" />
+          <Property Name="Delete_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Delete_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Voucher_Types" Relationship="Self.FK_Vouchers_Voucher_Types" FromRole="Vouchers" ToRole="Voucher_Types" />
+          <NavigationProperty Name="Account" Relationship="ACCModel.FK_Vouchers_Accounts" FromRole="Voucher" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Insert_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Update_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Delete_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Customers_Type">
+          <End Role="Customers_Type" Type="Self.Customers_Type" Multiplicity="0..1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers_Type">
+              <PropertyRef Name="PK_Customer_Type" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="FK_Customer_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="PK_Item" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="FK_Item" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Transaction_Types">
+          <End Role="Transaction_Types" Type="Self.Transaction_Types" Multiplicity="1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction_Types">
+              <PropertyRef Name="PK_Transaction_Type" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="FK_Transaction_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Voucher_Types">
+          <End Role="Voucher_Types" Type="Self.Voucher_Types" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher_Types">
+              <PropertyRef Name="PK_Voucher_Type" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="FK_Voucher_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ACCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account_Types" EntityType="Self.Account_Types" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Customers_Type" EntityType="Self.Customers_Type" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="Sales_Man" EntityType="Self.Sales_Man" />
+          <EntitySet Name="Transaction_Types" EntityType="Self.Transaction_Types" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="Voucher_Types" EntityType="Self.Voucher_Types" />
+          <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers" Association="Self.FK_Transactions_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers1" Association="Self.FK_Transactions_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_AspNetUsers2" Association="Self.FK_Transactions_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Customers_Type" Association="Self.FK_Customer_Customers_Type">
+            <End Role="Customers_Type" EntitySet="Customers_Type" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Item" Association="Self.FK_OrderItems_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Transaction_Types" Association="Self.FK_Transactions_Transaction_Types">
+            <End Role="Transaction_Types" EntitySet="Transaction_Types" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Voucher_Types" Association="Self.FK_Vouchers_Voucher_Types">
+            <End Role="Voucher_Types" EntitySet="Voucher_Types" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <FunctionImport Name="Accounts_AddEdit" ReturnType="Collection(ACCModel.Accounts_AddEdit_Result)">
+            <Parameter Name="PK_Account" Mode="InOut" Type="String" />
+            <Parameter Name="Account_Name" Mode="In" Type="String" />
+            <Parameter Name="FK_Account_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_Account_Category" Mode="In" Type="Byte" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="Return_Message" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Accounts_Delete" ReturnType="Collection(ACCModel.Accounts_Delete_Result)">
+            <Parameter Name="PK_Account" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Accounts_Insert" ReturnType="Collection(ACCModel.Accounts_Insert_Result)">
+            <Parameter Name="Account_Name" Mode="In" Type="String" />
+            <Parameter Name="FK_Account_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_Account_Category" Mode="In" Type="Byte" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Accounts_Update" ReturnType="Collection(ACCModel.Accounts_Update_Result)">
+            <Parameter Name="PK_Account" Mode="In" Type="String" />
+            <Parameter Name="Account_Name" Mode="In" Type="String" />
+            <Parameter Name="FK_Account_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_Account_Category" Mode="In" Type="Byte" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Customer_AddEdit" ReturnType="Collection(ACCModel.Customer_AddEdit_Result)">
+            <Parameter Name="PK_Customer" Mode="In" Type="Int64" />
+            <Parameter Name="Customer_Name" Mode="In" Type="String" />
+            <Parameter Name="FileNum" Mode="In" Type="Int64" />
+            <Parameter Name="IDCard" Mode="In" Type="Int64" />
+            <Parameter Name="Mobile1" Mode="In" Type="String" />
+            <Parameter Name="Mobile2" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="FK_Customer_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Customer_Delete" ReturnType="Collection(ACCModel.Customer_Delete_Result)">
+            <Parameter Name="PK_Customer" Mode="In" Type="Int64" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Customer_Insert">
+            <Parameter Name="Customer_Name" Mode="In" Type="String" />
+            <Parameter Name="FileNum" Mode="In" Type="Int64" />
+            <Parameter Name="IDCard" Mode="In" Type="Int64" />
+            <Parameter Name="Mobile1" Mode="In" Type="String" />
+            <Parameter Name="Mobile2" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="FK_Customer_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Customer_Select" ReturnType="Collection(ACCModel.Customer_Select_Result)" />
+          <FunctionImport Name="Customer_Update" ReturnType="Collection(ACCModel.Customer_Update_Result)">
+            <Parameter Name="Customer_Name" Mode="In" Type="String" />
+            <Parameter Name="FileNum" Mode="In" Type="Int64" />
+            <Parameter Name="IDCard" Mode="In" Type="Int64" />
+            <Parameter Name="Mobile1" Mode="In" Type="String" />
+            <Parameter Name="Mobile2" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Notes" Mode="In" Type="String" />
+            <Parameter Name="FK_Customer_Type" Mode="In" Type="Byte" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+            <Parameter Name="PK_Customer" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Data_Delete" />
+          <FunctionImport Name="Order_AddEdit" ReturnType="Collection(ACCModel.Order_AddEdit_Result)">
+            <Parameter Name="FK_Sales_Man" Mode="In" Type="Byte" />
+            <Parameter Name="OrderNo" Mode="In" Type="String" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Order_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Sponsor" Mode="In" Type="String" />
+            <Parameter Name="Sponsor_Info" Mode="In" Type="String" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+            <Parameter Name="PK_Order" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="Order_Delete" ReturnType="Collection(ACCModel.Order_Delete_Result)">
+            <Parameter Name="PK_Order" Mode="In" Type="Int64" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Order_GTotal_Update">
+            <Parameter Name="PK_Order" Mode="In" Type="Int64" />
+            <Parameter Name="GTotal" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="Order_Insert" ReturnType="Collection(ACCModel.Order_Insert_Result)">
+            <Parameter Name="FK_Sales_Man" Mode="In" Type="Byte" />
+            <Parameter Name="OrderNo" Mode="In" Type="String" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Order_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Sponsor" Mode="In" Type="String" />
+            <Parameter Name="Sponsor_Info" Mode="In" Type="String" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Order_Select" ReturnType="Collection(ACCModel.Order_Select_Result)" />
+          <FunctionImport Name="Order_Update" ReturnType="Collection(ACCModel.Order_Update_Result)">
+            <Parameter Name="FK_Sales_Man" Mode="In" Type="Byte" />
+            <Parameter Name="OrderNo" Mode="In" Type="String" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Order_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Sponsor" Mode="In" Type="String" />
+            <Parameter Name="Sponsor_Info" Mode="In" Type="String" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+            <Parameter Name="PK_Order" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItems_AddEdit" ReturnType="Collection(ACCModel.OrderItems_AddEdit_Result)">
+            <Parameter Name="FK_Order" Mode="In" Type="Int64" />
+            <Parameter Name="PK_OrderItem" Mode="In" Type="Int64" />
+            <Parameter Name="FK_Item" Mode="In" Type="Int32" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItems_Delete" ReturnType="Collection(Int64)">
+          <Parameter Name="PK_OrderItem" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItems_Insert" ReturnType="Collection(ACCModel.OrderItems_Insert_Result)">
+            <Parameter Name="FK_Order" Mode="In" Type="Int64" />
+            <Parameter Name="FK_Item" Mode="In" Type="Int32" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="OrderItems_Select" ReturnType="Collection(ACCModel.OrderItems_Select_Result)" />
+          <FunctionImport Name="OrderItems_Update" ReturnType="Collection(ACCModel.OrderItems_Update_Result)">
+            <Parameter Name="FK_Item" Mode="In" Type="Int32" />
+            <Parameter Name="Quantity" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Decimal" />
+            <Parameter Name="PK_OrderItem" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ACCModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ACCModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Transactions_AddEdit" ReturnType="Collection(ACCModel.Transactions_AddEdit_Result)">
+            <Parameter Name="PK_Transaction" Mode="InOut" Type="Int32" />
+            <Parameter Name="FK_Transaction_Type" Mode="In" Type="Byte" />
+            <Parameter Name="Transaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Transaction_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Transactions_Amount_Update">
+            <Parameter Name="FK_Transaction" Mode="In" Type="Int64" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="Transactions_Delete">
+            <Parameter Name="PK_Transaction" Mode="In" Type="Int32" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Transactions_Insert" ReturnType="Collection(ACCModel.Transactions_Insert_Result)">
+            <Parameter Name="PK_Transaction" Mode="InOut" Type="Int32" />
+            <Parameter Name="FK_Transaction_Type" Mode="In" Type="Byte" />
+            <Parameter Name="Transaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Transaction_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Transactions_Select" ReturnType="Collection(ACCModel.Transactions_Select_Result)" />
+          <FunctionImport Name="Transactions_Update">
+            <Parameter Name="PK_Transaction" Mode="In" Type="Int32" />
+            <Parameter Name="Transaction_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Transaction_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_Login">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Vouchers_AddEdit" ReturnType="Collection(ACCModel.Vouchers_AddEdit_Result)">
+            <Parameter Name="PK_Voucher" Mode="In" Type="Int64" />
+            <Parameter Name="FK_Voucher_Type" Mode="In" Type="Byte" />
+            <Parameter Name="Voucher_Num" Mode="In" Type="Int32" />
+            <Parameter Name="Voucher_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Voucher_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Vouchers_Delete" ReturnType="Collection(String)">
+            <Parameter Name="PK_Voucher" Mode="In" Type="Int64" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Vouchers_Insert" ReturnType="Collection(ACCModel.Vouchers_Insert_Result)">
+            <Parameter Name="FK_Voucher_Type" Mode="In" Type="Byte" />
+            <Parameter Name="Voucher_Num" Mode="In" Type="Int32" />
+            <Parameter Name="Voucher_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Voucher_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Vouchers_Select" ReturnType="Collection(ACCModel.Vouchers_Select_Result)" />
+          <FunctionImport Name="Vouchers_Update" ReturnType="Collection(String)">
+            <Parameter Name="FK_Voucher_Type" Mode="In" Type="Byte" />
+            <Parameter Name="Voucher_Num" Mode="In" Type="Int32" />
+            <Parameter Name="Voucher_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="FK_Account" Mode="In" Type="String" />
+            <Parameter Name="Voucher_Name" Mode="In" Type="String" />
+            <Parameter Name="Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="FK_User" Mode="In" Type="String" />
+            <Parameter Name="PK_Voucher" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="Orders" EntityType="ACCModel.Order" />
+          <AssociationSet Name="FK_Order_Sales_Man" Association="ACCModel.FK_Order_Sales_Man">
+            <End Role="Sales_Man" EntitySet="Sales_Man" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Order" Association="ACCModel.FK_OrderItems_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="ACCModel.Account" />
+          <AssociationSet Name="FK_Accounts_Account_Types" Association="ACCModel.FK_Accounts_Account_Types">
+            <End Role="Account_Types" EntitySet="Account_Types" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Accounts" Association="ACCModel.FK_Order_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transactions_Accounts" Association="ACCModel.FK_Transactions_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Accounts" Association="ACCModel.FK_Vouchers_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Voucher" EntitySet="Vouchers" />
+          </AssociationSet>
+          <EntitySet Name="Account_Categories" EntityType="ACCModel.Account_Categories" />
+          <AssociationSet Name="FK_Accounts_Account_Categories" Association="ACCModel.FK_Accounts_Account_Categories">
+            <End Role="Account_Categories" EntitySet="Account_Categories" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="Accounts_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Accounts_Delete_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Accounts_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Accounts_Update_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Customer_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Customer_Delete_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Customer_Select_Result">
+          <Property Type="Int64" Name="PK_Customer" Nullable="false" />
+          <Property Type="String" Name="Customer_Name" Nullable="false" MaxLength="80" />
+          <Property Type="Int64" Name="FileNum" Nullable="true" />
+          <Property Type="Int64" Name="IDCard" Nullable="true" />
+          <Property Type="String" Name="Mobile1" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Mobile2" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Notes" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="FK_Account" Nullable="true" MaxLength="128" />
+          <Property Type="Byte" Name="FK_Customer_Type" Nullable="true" />
+          <Property Type="String" Name="FK_Insert_User" Nullable="true" MaxLength="128" />
+          <Property Type="DateTime" Name="Insert_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Update_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Update_User" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="Is_Delete" Nullable="true" />
+          <Property Type="DateTime" Name="Delete_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Delete_User" Nullable="true" MaxLength="128" />
+          <Property Type="Decimal" Name="Balance" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="Customer_Update_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Order_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Order_Delete_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Order_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Order_Select_Result">
+          <Property Type="Int64" Name="PK_Order" Nullable="false" />
+          <Property Type="Byte" Name="FK_Sales_Man" Nullable="false" />
+          <Property Type="String" Name="OrderNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FK_Account" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="Order_Date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Sponsor" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Sponsor_Info" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="FK_Insert_User" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="FK_Transaction" Nullable="true" />
+          <Property Type="DateTime" Name="Insert_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Update_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Update_User" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="Is_Delete" Nullable="true" />
+          <Property Type="DateTime" Name="Delete_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Delete_User" Nullable="true" MaxLength="128" />
+          <Property Type="Decimal" Name="GTotal" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="Order_Update_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="OrderItems_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="OrderItems_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="OrderItems_Select_Result">
+          <Property Type="Int64" Name="PK_OrderItem" Nullable="false" />
+          <Property Type="Int64" Name="FK_Order" Nullable="false" />
+          <Property Type="Int32" Name="FK_Item" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="8" Scale="2" />
+          <Property Type="Decimal" Name="LineValue" Nullable="false" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="OrderItems_Update_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Transactions_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Transactions_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Transactions_Select_Result">
+          <Property Type="Int64" Name="PK_Transaction" Nullable="false" />
+          <Property Type="Byte" Name="FK_Transaction_Type" Nullable="false" />
+          <Property Type="DateTime" Name="Transaction_Date" Nullable="false" />
+          <Property Type="String" Name="FK_Account" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Transaction_Name" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="Amount" Nullable="false" Precision="19" />
+          <Property Type="String" Name="FK_Insert_User" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="Insert_Date" Nullable="true" Precision="23" />
+          <Property Type="Byte" Name="FK_Transaction_Status" Nullable="true" />
+          <Property Type="DateTime" Name="Update_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Update_User" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="Is_Delete" Nullable="true" />
+          <Property Type="DateTime" Name="Delete_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Delete_User" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <ComplexType Name="Vouchers_AddEdit_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Vouchers_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Vouchers_Select_Result">
+          <Property Type="Int64" Name="PK_Voucher" Nullable="false" />
+          <Property Type="Byte" Name="FK_Voucher_Type" Nullable="true" />
+          <Property Type="Int32" Name="Voucher_Num" Nullable="true" />
+          <Property Type="DateTime" Name="Voucher_Date" Nullable="true" />
+          <Property Type="String" Name="FK_Account" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Voucher_Name" Nullable="true" MaxLength="80" />
+          <Property Type="Decimal" Name="Amount" Nullable="true" Precision="19" />
+          <Property Type="String" Name="FK_Insert_User" Nullable="true" MaxLength="128" />
+          <Property Type="Int64" Name="FK_Transaction" Nullable="true" />
+          <Property Type="Byte" Name="FK_Transaction_Type" Nullable="true" />
+          <Property Type="Byte" Name="FK_Voucher_Status" Nullable="true" />
+          <Property Type="DateTime" Name="Insert_Date" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="Update_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Update_User" Nullable="true" MaxLength="128" />
+          <Property Type="Boolean" Name="Is_Delete" Nullable="true" />
+          <Property Type="DateTime" Name="Delete_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="FK_Delete_User" Nullable="true" MaxLength="128" />
+        </ComplexType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="PK_Order" />
+          </Key>
+          <Property Name="PK_Order" Type="Int64" Nullable="false" />
+          <Property Name="FK_Sales_Man" Type="Byte" Nullable="false" />
+          <Property Name="OrderNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Account" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sponsor" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Sponsor_Info" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Insert_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Transaction" Type="Int64" />
+          <Property Name="Insert_Date" Type="DateTime" Precision="3" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Update_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Delete" Type="Boolean" />
+          <Property Name="Delete_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Delete_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="GTotal" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Sales_Man" Relationship="ACCModel.FK_Order_Sales_Man" FromRole="Order" ToRole="Sales_Man" />
+          <NavigationProperty Name="OrderItems" Relationship="ACCModel.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItem" />
+          <NavigationProperty Name="Account" Relationship="ACCModel.FK_Order_Accounts" FromRole="Order" ToRole="Account" />
+          <Property Name="Payment" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Notes" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Voucher" Type="Int64" />
+          <Property Name="Voucher_Num" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Order_Sales_Man">
+          <End Type="ACCModel.Sales_Man" Role="Sales_Man" Multiplicity="1" />
+          <End Type="ACCModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sales_Man">
+              <PropertyRef Name="PK_Sales_Man" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FK_Sales_Man" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Order">
+          <End Type="ACCModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ACCModel.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="PK_Order" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="FK_Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Order_AddEdit1_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="PK_Account" />
+          </Key>
+          <Property Name="PK_Account" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Account_Name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FK_Account_Type" Type="Byte" Nullable="false" />
+          <Property Name="FK_Account_Category" Type="Byte" Nullable="false" />
+          <Property Name="Insert_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Insert_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Update_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Delete" Type="Boolean" />
+          <Property Name="Delete_Date" Type="DateTime" Precision="3" />
+          <Property Name="FK_Delete_User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DP_sum" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="cr_sum" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Account_Types" Relationship="ACCModel.FK_Accounts_Account_Types" FromRole="Account" ToRole="Account_Types" />
+          <NavigationProperty Name="Orders" Relationship="ACCModel.FK_Order_Accounts" FromRole="Account" ToRole="Order" />
+          <NavigationProperty Name="Transactions" Relationship="ACCModel.FK_Transactions_Accounts" FromRole="Account" ToRole="Transaction" />
+          <NavigationProperty Name="Vouchers" Relationship="ACCModel.FK_Vouchers_Accounts" FromRole="Account" ToRole="Voucher" />
+          <NavigationProperty Name="Account_Categories" Relationship="ACCModel.FK_Accounts_Account_Categories" FromRole="Account" ToRole="Account_Categories" />
+        </EntityType>
+        <Association Name="FK_Accounts_Account_Types">
+          <End Type="ACCModel.Account_Types" Role="Account_Types" Multiplicity="1" />
+          <End Type="ACCModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account_Types">
+              <PropertyRef Name="PK_Account_Type" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK_Account_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Accounts">
+          <End Type="ACCModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="ACCModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transactions_Accounts">
+          <End Type="ACCModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="ACCModel.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Accounts">
+          <End Type="ACCModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="ACCModel.Voucher" Role="Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="PK_Account" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="FK_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account_Categories">
+          <Key>
+            <PropertyRef Name="PK_Account_Category" />
+          </Key>
+          <Property Name="PK_Account_Category" Type="Byte" Nullable="false" />
+          <Property Name="Account_Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="ACCModel.FK_Accounts_Account_Categories" FromRole="Account_Categories" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Accounts_Account_Categories">
+          <End Type="ACCModel.Account_Categories" Role="Account_Categories" Multiplicity="1" />
+          <End Type="ACCModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account_Categories">
+              <PropertyRef Name="PK_Account_Category" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="FK_Account_Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ACCModelStoreContainer" CdmEntityContainer="ACCEntities">
+          <EntitySetMapping Name="Account_Types">
+            <EntityTypeMapping TypeName="ACCModel.Account_Types">
+              <MappingFragment StoreEntitySet="Account_Types">
+                <ScalarProperty Name="PK_Account_Type" ColumnName="PK_Account_Type" />
+                <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ACCModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ACCModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ACCModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ACCModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="ACCModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="PK_Customer" ColumnName="PK_Customer" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_Customer_Type" ColumnName="FK_Customer_Type" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ACCModel.Customer">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="ACCModel.Store.Customer_Delete">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="PK_Customer" ParameterName="PK_Customer" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="ACCModel.Store.Customer_AddEdit">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" Version="Current" />
+                  <ScalarProperty Name="FK_Customer_Type" ParameterName="FK_Customer_Type" Version="Current" />
+                  <ScalarProperty Name="Notes" ParameterName="Notes" Version="Current" />
+                  <ScalarProperty Name="Address" ParameterName="Address" Version="Current" />
+                  <ScalarProperty Name="Mobile2" ParameterName="Mobile2" Version="Current" />
+                  <ScalarProperty Name="Mobile1" ParameterName="Mobile1" Version="Current" />
+                  <ScalarProperty Name="IDCard" ParameterName="IDCard" Version="Current" />
+                  <ScalarProperty Name="FileNum" ParameterName="FileNum" Version="Current" />
+                  <ScalarProperty Name="Customer_Name" ParameterName="Customer_Name" Version="Current" />
+                  <ScalarProperty Name="PK_Customer" ParameterName="PK_Customer" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="ACCModel.Store.Customer_AddEdit">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="FK_Customer_Type" ParameterName="FK_Customer_Type" />
+                  <ScalarProperty Name="Notes" ParameterName="Notes" />
+                  <ScalarProperty Name="Address" ParameterName="Address" />
+                  <ScalarProperty Name="Mobile2" ParameterName="Mobile2" />
+                  <ScalarProperty Name="Mobile1" ParameterName="Mobile1" />
+                  <ScalarProperty Name="IDCard" ParameterName="IDCard" />
+                  <ScalarProperty Name="FileNum" ParameterName="FileNum" />
+                  <ScalarProperty Name="Customer_Name" ParameterName="Customer_Name" />
+                  <ScalarProperty Name="PK_Customer" ParameterName="PK_Customer" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers_Type">
+            <EntityTypeMapping TypeName="ACCModel.Customers_Type">
+              <MappingFragment StoreEntitySet="Customers_Type">
+                <ScalarProperty Name="PK_Customer_Type" ColumnName="PK_Customer_Type" />
+                <ScalarProperty Name="Customer_Type" ColumnName="Customer_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="ACCModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="PK_Item" ColumnName="PK_Item" />
+                <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+                <ScalarProperty Name="Item_Price" ColumnName="Item_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="ACCModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="PK_OrderItem" ColumnName="PK_OrderItem" />
+                <ScalarProperty Name="FK_Order" ColumnName="FK_Order" />
+                <ScalarProperty Name="FK_Item" ColumnName="FK_Item" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LineValue" ColumnName="LineValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ACCModel.OrderItem">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="ACCModel.Store.OrderItems_Delete">
+                  <ScalarProperty Name="PK_OrderItem" ParameterName="PK_OrderItem" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="ACCModel.Store.OrderItems_AddEdit">
+                  <ScalarProperty Name="Price" ParameterName="Price" Version="Current" />
+                  <ScalarProperty Name="Quantity" ParameterName="Quantity" Version="Current" />
+                  <ScalarProperty Name="FK_Item" ParameterName="FK_Item" Version="Current" />
+                  <ScalarProperty Name="PK_OrderItem" ParameterName="PK_OrderItem" Version="Current" />
+                  <ScalarProperty Name="FK_Order" ParameterName="FK_Order" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="ACCModel.Store.OrderItems_AddEdit">
+                  <ScalarProperty Name="Price" ParameterName="Price" />
+                  <ScalarProperty Name="Quantity" ParameterName="Quantity" />
+                  <ScalarProperty Name="FK_Item" ParameterName="FK_Item" />
+                  <ScalarProperty Name="PK_OrderItem" ParameterName="PK_OrderItem" />
+                  <ScalarProperty Name="FK_Order" ParameterName="FK_Order" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales_Man">
+            <EntityTypeMapping TypeName="ACCModel.Sales_Man">
+              <MappingFragment StoreEntitySet="Sales_Man">
+                <ScalarProperty Name="PK_Sales_Man" ColumnName="PK_Sales_Man" />
+                <ScalarProperty Name="Sales_Man_Name" ColumnName="Sales_Man_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaction_Types">
+            <EntityTypeMapping TypeName="ACCModel.Transaction_Types">
+              <MappingFragment StoreEntitySet="Transaction_Types">
+                <ScalarProperty Name="PK_Transaction_Type" ColumnName="PK_Transaction_Type" />
+                <ScalarProperty Name="Transaction_Type" ColumnName="Transaction_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="ACCModel.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="PK_Transaction" ColumnName="PK_Transaction" />
+                <ScalarProperty Name="FK_Transaction_Type" ColumnName="FK_Transaction_Type" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="Transaction_Name" ColumnName="Transaction_Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="FK_Transaction_Status" ColumnName="FK_Transaction_Status" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voucher_Types">
+            <EntityTypeMapping TypeName="ACCModel.Voucher_Types">
+              <MappingFragment StoreEntitySet="Voucher_Types">
+                <ScalarProperty Name="PK_Voucher_Type" ColumnName="PK_Voucher_Type" />
+                <ScalarProperty Name="Voucher_Type" ColumnName="Voucher_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="ACCModel.Voucher">
+              <MappingFragment StoreEntitySet="Vouchers">
+                <ScalarProperty Name="PK_Voucher" ColumnName="PK_Voucher" />
+                <ScalarProperty Name="FK_Voucher_Type" ColumnName="FK_Voucher_Type" />
+                <ScalarProperty Name="Voucher_Num" ColumnName="Voucher_Num" />
+                <ScalarProperty Name="Voucher_Date" ColumnName="Voucher_Date" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="Voucher_Name" ColumnName="Voucher_Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="FK_Transaction" ColumnName="FK_Transaction" />
+                <ScalarProperty Name="FK_Transaction_Type" ColumnName="FK_Transaction_Type" />
+                <ScalarProperty Name="FK_Voucher_Status" ColumnName="FK_Voucher_Status" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ACCModel.Voucher">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="ACCModel.Store.Vouchers_Delete">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="PK_Voucher" ParameterName="PK_Voucher" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="ACCModel.Store.Vouchers_AddEdit">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" Version="Current" />
+                  <ScalarProperty Name="Amount" ParameterName="Amount" Version="Current" />
+                  <ScalarProperty Name="Voucher_Name" ParameterName="Voucher_Name" Version="Current" />
+                  <ScalarProperty Name="FK_Account" ParameterName="FK_Account" Version="Current" />
+                  <ScalarProperty Name="Voucher_Date" ParameterName="Voucher_Date" Version="Current" />
+                  <ScalarProperty Name="Voucher_Num" ParameterName="Voucher_Num" Version="Current" />
+                  <ScalarProperty Name="FK_Voucher_Type" ParameterName="FK_Voucher_Type" Version="Current" />
+                  <ScalarProperty Name="PK_Voucher" ParameterName="PK_Voucher" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="ACCModel.Store.Vouchers_AddEdit">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="Amount" ParameterName="Amount" />
+                  <ScalarProperty Name="Voucher_Name" ParameterName="Voucher_Name" />
+                  <ScalarProperty Name="FK_Account" ParameterName="FK_Account" />
+                  <ScalarProperty Name="Voucher_Date" ParameterName="Voucher_Date" />
+                  <ScalarProperty Name="Voucher_Num" ParameterName="Voucher_Num" />
+                  <ScalarProperty Name="FK_Voucher_Type" ParameterName="FK_Voucher_Type" />
+                  <ScalarProperty Name="PK_Voucher" ParameterName="PK_Voucher" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ACCModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Customer_AddEdit" FunctionName="ACCModel.Store.Customer_AddEdit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Customer_AddEdit_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Customer_Delete" FunctionName="ACCModel.Store.Customer_Delete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Customer_Delete_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Customer_Insert" FunctionName="ACCModel.Store.Customer_Insert" />
+          <FunctionImportMapping FunctionImportName="Customer_Select" FunctionName="ACCModel.Store.Customer_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Customer_Select_Result">
+                <ScalarProperty Name="PK_Customer" ColumnName="PK_Customer" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="FileNum" ColumnName="FileNum" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+                <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="FK_Customer_Type" ColumnName="FK_Customer_Type" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Customer_Update" FunctionName="ACCModel.Store.Customer_Update">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Customer_Update_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderItems_AddEdit" FunctionName="ACCModel.Store.OrderItems_AddEdit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.OrderItems_AddEdit_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderItems_Delete" FunctionName="ACCModel.Store.OrderItems_Delete" />
+          <FunctionImportMapping FunctionImportName="OrderItems_Insert" FunctionName="ACCModel.Store.OrderItems_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.OrderItems_Insert_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderItems_Select" FunctionName="ACCModel.Store.OrderItems_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.OrderItems_Select_Result">
+                <ScalarProperty Name="PK_OrderItem" ColumnName="PK_OrderItem" />
+                <ScalarProperty Name="FK_Order" ColumnName="FK_Order" />
+                <ScalarProperty Name="FK_Item" ColumnName="FK_Item" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LineValue" ColumnName="LineValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderItems_Update" FunctionName="ACCModel.Store.OrderItems_Update">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.OrderItems_Update_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transactions_AddEdit" FunctionName="ACCModel.Store.Transactions_AddEdit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Transactions_AddEdit_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transactions_Amount_Update" FunctionName="ACCModel.Store.Transactions_Amount_Update" />
+          <FunctionImportMapping FunctionImportName="Transactions_Delete" FunctionName="ACCModel.Store.Transactions_Delete" />
+          <FunctionImportMapping FunctionImportName="Transactions_Insert" FunctionName="ACCModel.Store.Transactions_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Transactions_Insert_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transactions_Select" FunctionName="ACCModel.Store.Transactions_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Transactions_Select_Result">
+                <ScalarProperty Name="PK_Transaction" ColumnName="PK_Transaction" />
+                <ScalarProperty Name="FK_Transaction_Type" ColumnName="FK_Transaction_Type" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction_Date" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="Transaction_Name" ColumnName="Transaction_Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="FK_Transaction_Status" ColumnName="FK_Transaction_Status" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Transactions_Update" FunctionName="ACCModel.Store.Transactions_Update" />
+          <FunctionImportMapping FunctionImportName="Vouchers_AddEdit" FunctionName="ACCModel.Store.Vouchers_AddEdit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Vouchers_AddEdit_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Vouchers_Delete" FunctionName="ACCModel.Store.Vouchers_Delete" />
+          <FunctionImportMapping FunctionImportName="Vouchers_Insert" FunctionName="ACCModel.Store.Vouchers_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Vouchers_Insert_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Vouchers_Select" FunctionName="ACCModel.Store.Vouchers_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ACCModel.Vouchers_Select_Result">
+                <ScalarProperty Name="PK_Voucher" ColumnName="PK_Voucher" />
+                <ScalarProperty Name="FK_Voucher_Type" ColumnName="FK_Voucher_Type" />
+                <ScalarProperty Name="Voucher_Num" ColumnName="Voucher_Num" />
+                <ScalarProperty Name="Voucher_Date" ColumnName="Voucher_Date" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="Voucher_Name" ColumnName="Voucher_Name" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="FK_Transaction" ColumnName="FK_Transaction" />
+                <ScalarProperty Name="FK_Transaction_Type" ColumnName="FK_Transaction_Type" />
+                <ScalarProperty Name="FK_Voucher_Status" ColumnName="FK_Voucher_Status" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Vouchers_Update" FunctionName="ACCModel.Store.Vouchers_Update" />
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ACCModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Voucher_Num" ColumnName="Voucher_Num" />
+                <ScalarProperty Name="FK_Voucher" ColumnName="FK_Voucher" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="GTotal" ColumnName="GTotal" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="FK_Transaction" ColumnName="FK_Transaction" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Sponsor_Info" ColumnName="Sponsor_Info" />
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="FK_Account" ColumnName="FK_Account" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="FK_Sales_Man" ColumnName="FK_Sales_Man" />
+                <ScalarProperty Name="PK_Order" ColumnName="PK_Order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="ACCModel.Order">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="ACCModel.Store.Order_Delete">
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="PK_Order" ParameterName="PK_Order" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="ACCModel.Store.Order_AddEdit">
+                  <ScalarProperty Name="Voucher_Num" ParameterName="Voucher_Num" Version="Current" />
+                  <ScalarProperty Name="Notes" ParameterName="Notes" Version="Current" />
+                  <ScalarProperty Name="Payment" ParameterName="Payment" Version="Current" />
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" Version="Current" />
+                  <ScalarProperty Name="PK_Order" ParameterName="PK_Order" Version="Current" />
+                  <ScalarProperty Name="Sponsor_Info" ParameterName="Sponsor_Info" Version="Current" />
+                  <ScalarProperty Name="Sponsor" ParameterName="Sponsor" Version="Current" />
+                  <ScalarProperty Name="Order_Date" ParameterName="Order_Date" Version="Current" />
+                  <ScalarProperty Name="FK_Account" ParameterName="FK_Account" Version="Current" />
+                  <ScalarProperty Name="OrderNo" ParameterName="OrderNo" Version="Current" />
+                  <ScalarProperty Name="FK_Sales_Man" ParameterName="FK_Sales_Man" Version="Current" />
+                </UpdateFunction>
+                <InsertFunction FunctionName="ACCModel.Store.Order_AddEdit">
+                  <ScalarProperty Name="Voucher_Num" ParameterName="Voucher_Num" />
+                  <ScalarProperty Name="Notes" ParameterName="Notes" />
+                  <ScalarProperty Name="Payment" ParameterName="Payment" />
+                  <ScalarProperty Name="FK_Insert_User" ParameterName="FK_User" />
+                  <ScalarProperty Name="PK_Order" ParameterName="PK_Order" />
+                  <ScalarProperty Name="Sponsor_Info" ParameterName="Sponsor_Info" />
+                  <ScalarProperty Name="Sponsor" ParameterName="Sponsor" />
+                  <ScalarProperty Name="Order_Date" ParameterName="Order_Date" />
+                  <ScalarProperty Name="FK_Account" ParameterName="FK_Account" />
+                  <ScalarProperty Name="OrderNo" ParameterName="OrderNo" />
+                  <ScalarProperty Name="FK_Sales_Man" ParameterName="FK_Sales_Man" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="ACCModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="cr_sum" ColumnName="cr_sum" />
+                <ScalarProperty Name="DP_sum" ColumnName="DP_sum" />
+                <ScalarProperty Name="FK_Delete_User" ColumnName="FK_Delete_User" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="FK_Update_User" ColumnName="FK_Update_User" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="FK_Insert_User" ColumnName="FK_Insert_User" />
+                <ScalarProperty Name="Insert_Date" ColumnName="Insert_Date" />
+                <ScalarProperty Name="FK_Account_Category" ColumnName="FK_Account_Category" />
+                <ScalarProperty Name="FK_Account_Type" ColumnName="FK_Account_Type" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Account_Name" ColumnName="Account_Name" />
+                <ScalarProperty Name="PK_Account" ColumnName="PK_Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account_Categories">
+            <EntityTypeMapping TypeName="ACCModel.Account_Categories">
+              <MappingFragment StoreEntitySet="Account_Categories">
+                <ScalarProperty Name="Account_Category" ColumnName="Account_Category" />
+                <ScalarProperty Name="PK_Account_Category" ColumnName="PK_Account_Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

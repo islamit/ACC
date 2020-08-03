@@ -1,0 +1,401 @@
+﻿@model IEnumerable<ACC.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+
+
+    <h1 class="card-title text-center">@Resources.ACC.Orders </h1>
+    <hr />
+    <!-- Search form -->
+    @using (Html.BeginForm())
+    {
+        <div dir="rtl">
+            <div class="form-group row">
+                <div class="col-md-1">
+                    @Html.ActionLink("ALL ", "Index",  new { area = "", max_results = 1000000 }, new { @class = "btn btn btn-secondary btn-sm" })
+                </div>
+                <div class="col-md-2">
+                    <input class="btn blue-gradient btn-sm " type="submit" value="بحث" />
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                </div>
+                <div class="col-md-5">
+                    
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("System") || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink(" ", "Create", new { area = "" }, new { @class = "btn btn-success btn-sm fa fa-plus pull-left", data_toggle = "modal", data_target = "#newOrderModal" })
+                                }
+                            }
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+
+    <table dir="rtl" id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sales_Man.Sales_Man_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order_Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Account.Account_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sponsor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GTotal)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sales_Man.Sales_Man_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order_Date)
+                    </td>
+                    <td>
+                        <h4>@Html.DisplayFor(modelItem => item.Account.Account_Name)</h4>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sponsor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GTotal)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("System") || User.IsInRole("Admin"))
+                            {
+                                 @Html.ActionLink(" ", "Edit", new { id = item.PK_Order }, new { @class = "btn btn-sm btn-primary  fa fa-pencil" })
+                                 @Html.ActionLink(" ", "Details", new { id = item.PK_Order }, new { @class = "btn btn-sm btn-default fa fa-list" })
+                                 @Html.ActionLink(" ", "Delete", new { id = item.PK_Order }, new { @class = "btn  btn-sm btn-danger fa fa-eraser" })
+                          }
+                        }
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="newOrderModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" style=" width: 900px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title">اضافة فاتورة</h5>
+                <button id="saveOrder" type="submit" class="btn btn-success pull-right">@Resources.ACC.Save</button>
+            </div>
+            <form id="NewOrderForm">
+                <div class="modal-body">
+ 
+                    <div class="form">
+                        <div class="row">
+
+
+
+                            <div class="col-md-5">
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">
+                                        رجل المبيعات
+                                    </label>
+                                    <div class="col-md-8">
+                                        @Html.DropDownList("FK_Sales_Man", null, htmlAttributes: new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">
+                                        رقم الفاتورة
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="OrderNo" value="0" name="OrderNo" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">
+                                        التاريخ
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="Order_Date" value="@DateTime.Now.ToShortDateString()" name="Order_Date" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">
+                                        دفعة اولى
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Payment" value="0" name="Payment" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-4">
+                                        رقم السند
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Voucher_Num" value="0" name="Voucher_Num" class="form-control" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-7">
+
+                                <div class="form-group row">
+
+                                    <div class="col-md-9">
+                                        @Html.DropDownList("FK_Account", null, htmlAttributes: new { @class = "select2", style = "width: 300px;" })
+                                    </div>
+                                    <label class="control-label col-md-3">
+                                        الحساب
+                                    </label>
+                                </div>
+
+                                <div class="form-group row">
+
+                                    <div class="col-md-9">
+                                        <input type="text" id="Sponsor" name="Sponsor" value="-" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-md-3">
+                                        الكفيل
+                                    </label>
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-md-9">
+                                        <input type="text" id="Sponsor_Info" name="Sponsor_Info" value="-" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-md-3">
+                                        معلومات الكفيل
+                                    </label>
+                                </div>
+                                <div class="form-group row">
+
+                                    <div class="col-md-9">
+                                        <input type="text" id="Notes" name="Notes" value="-" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-md-3">
+                                        ملاحظات
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        @*Order Details*@
+
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                @*<tr>
+                                        <th>-</th>
+                                        <th>الصنف</th>
+                                        <th>الكمية</th>
+                                        <th>السعر</th>
+
+                                        <th></th>
+                                    <tr>*@
+
+
+                                <tr>
+                                    <th>-</th>
+                                    <th style="width:50%">
+                                        @Html.DropDownList("FK_Item", null, htmlAttributes: new { @class = "select2", style = "width: 100%;" })
+                                    </th>
+                                    <th style="width:10%">
+                                        <input type="text" id="Quantity" name="Quantity" placeholder="الكمية" class="form-control" />
+                                    </th>
+                                    <th style="width:20%">
+                                        <input type="text" id="Price" name="Price" placeholder="السعر" class="form-control" />
+                                    </th>
+
+                                    <th style="width:20%">
+                                        <a id="addToList" class="btn btn-primary fa fa-plus-circle"></a>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <table id="detailsTable" class="table">
+
+                                    <tbody></tbody>
+                                </table>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //Show Modal.
+        function addNewOrder() {
+            $("#newOrderModal").modal();
+        }
+        //Add Multiple Order.
+        $("#addToList").click(function (e) {
+
+            e.preventDefault();
+
+            if ($.trim($("#Price").val()) == "") return;
+            var selectoption = document.getElementById("FK_Item");
+            var optionText = selectoption.options[selectoption.selectedIndex].text;
+            var fK_Item = $("#FK_Item").val(),
+                fK_Item_Name = selectoption.options[selectoption.selectedIndex].text,
+                quantity = $("#Quantity").val(),
+                price = $("#Price").val(),
+                detailsTableBody = $("#detailsTable tbody");
+            var productItem = '<tr><td>' + fK_Item + '</td><td>' + fK_Item_Name + '</td><td>' + quantity + '</td><td>' + price + '</td><td>' + (parseFloat(price) * parseInt(quantity)) + '</td><td><a data-itemId="0" href="#" class="deleteItem"><i class="btn btn-sm btn-danger fa fa-eraser"></i></a></td></tr>';
+
+
+            detailsTableBody.append(productItem);
+            clearItem();
+        });
+        //After Add A New Order In The List, Clear Clean The Form For Add More Order.
+        function clearItem() {
+            $("#FK_Item").val('');
+            $("#Price").val('');
+            $("#Quantity").val('');
+        }
+        // After Add A New Order In The List, If You Want, You Can Remove It.
+        $(document).on('click', 'a.deleteItem', function (e) {
+
+            e.preventDefault();
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                });
+            }
+        });
+        //After Click Save Button Pass All Data View To Controller For Save Database
+        function saveOrder(data) {
+            return $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: "/Orders/SaveOrder",
+                data: data,
+                success: function (result) {
+                    //alert(result);
+                    //TempData["msg"] = "Success";
+                    location.reload();
+                },
+                error: function () {
+                    //alert("Error!")
+                    //TempData["msg"] = "Error";
+                }
+            });
+        }
+        //Collect Multiple Order List For Pass To Controller
+        $("#saveOrder").click(function (e) {
+            $(this).prop("disable", true);
+            $(this).css("cursor", "not-allowed");
+            //$('#processing').toggle();
+            e.preventDefault();
+            var orderArr = [];
+            orderArr.length = 0;
+            $.each($("#detailsTable tbody tr"), function () {
+                orderArr.push({
+                    fK_Item: $(this).find('td:eq(0)').html(),
+                    quantity: $(this).find('td:eq(2)').html(),
+                    price: $(this).find('td:eq(3)').html()
+                });
+            });
+
+
+            var data = JSON.stringify({
+                FK_Sales_Man: $("#FK_Sales_Man").val(),
+                OrderNo: $("#OrderNo").val(),
+                FK_Account: $("#FK_Account").val(),
+                Order_Date: $("#Order_Date").val(),
+                Sponsor: $("#Sponsor").val(),
+                Sponsor_Info: $("#Sponsor_Info").val(),
+                Payment: $("#Payment").val(),
+                Notes: $("#Notes").val(),
+                Voucher_Num: $("#Voucher_Num").val(),
+                order_item: orderArr
+            });
+
+            $.when(saveOrder(data)).then(function (response) {
+                console.log(response);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+
+
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var ddlCustomers = $("#ddlCustomers");
+            ddlCustomers.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading.....</option>');
+            $.ajax({
+                type: "POST",
+                url: "/Accounts/AccountList",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    ddlCustomers.empty().append('<option selected="selected" value="0">Please select</option>');
+                    $.each(response, function () {
+                        ddlCustomers.append($("<option></option>").val(this['Value']).html(this['Text']));
+                    });
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
+}
+
+
+
+

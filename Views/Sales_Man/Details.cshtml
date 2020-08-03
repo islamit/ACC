@@ -1,0 +1,26 @@
+﻿@model ACC.Models.Sales_Man
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sales_Man</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sales_Man_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sales_Man_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PK_Sales_Man }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

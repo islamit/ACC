@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ACC.Models.OrderItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LineValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.OrderNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LineValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.Item_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.OrderNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PK_OrderItem }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PK_OrderItem }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PK_OrderItem })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,30 @@
+﻿@model ACC.Models.Transaction
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h1 class="card-title text-center">@Resources.ACC.Transactions </h1>
+<hr />
+<h4 class="text-center">   هل انت متاكد من حذف بيانات  </h4>
+
+<h4 class="text-center text-danger"> القيد المحاسبي  :   @Html.DisplayFor(model => model.Transaction_Name) </h4>
+
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="text-center form-actions no-color">
+
+            @Html.ActionLink(" الغاء الامر ", "Index", new { area = "" }, new { @class = "btn btn-success" })|
+
+            <input type="submit"  id="submit"   value="@Resources.ACC.Delete" class="btn btn-danger" />
+
+        </div>
+    }
+</div>
+
+
+
+

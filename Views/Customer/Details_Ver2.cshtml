@@ -1,0 +1,115 @@
+﻿@model ACC.Models.Customer
+<div id="printdiv">
+    <img src="~/Images/top_neader.PNG" />
+
+    <div>
+        <hr />
+        <h2 class="text-center ">تقرير الزبائن</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt class="text-lg-right ">
+                @Html.DisplayNameFor(model => model.Customer_Name):
+                @Html.DisplayFor(model => model.Customer_Name)
+            </dt>
+            <dt class="text-lg-right ">
+                @Html.DisplayNameFor(model => model.IDCard):
+                @Html.DisplayFor(model => model.IDCard)
+            </dt>
+            <dt class="text-lg-right ">
+                @Html.DisplayNameFor(model => model.Mobile1):
+                @Html.DisplayFor(model => model.Mobile1)
+            </dt>
+            <dt class="text-lg-right ">
+                @Html.DisplayNameFor(model => model.Balance)
+                @Html.DisplayFor(model => model.Balance)
+            </dt>
+        </dl>
+    </div>
+
+    <table id="print" class="table-bordered table-sm" width="100%">
+        <thead>
+            <tr>
+                <td class="text-xl-right"> التفاصيل </th>
+                <td class="text-xl-right"> المبلغ  </th>
+                <td class="text-xl-right">البيان </th>
+                <td class="text-xl-right"> التاريخ </th>
+
+                <td class="text-xl-right">النوع   </th>
+                <td class="text-xl-right">الرقم </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (ACC.Models.Transaction item in ViewBag.CustomerTransaction)
+            {
+            <tr>
+                <td class="text-xl-right">
+                    @********************order*************@
+                    <table id="print" class="table-bordered table-sm" width="100%">
+                        <tbody>
+                            @foreach (ACC.Models.Order oitem in ViewBag.CustomerOrder)
+                            {
+                                if (oitem.FK_Transaction == item.PK_Transaction)
+                                {
+                                    <tr>
+                                        <td class="text-xl-right">
+                                            <table id="print" class="table-bordered table-sm" width="100%">
+                                                <tr>
+                                                    <td>الاجمالي</td>
+                                                    <td>السعر</td>
+                                                    <td>العدد</td>
+                                                    <td>الصنف</td>
+                                                </tr>
+                                                <tbody>
+                                                    @foreach (ACC.Models.OrderItem oi in ViewBag.CustomerOrderItem)
+                                                    {
+                                                        if (oi.FK_Order == oitem.PK_Order)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-xl-right">
+                                                                    @Html.DisplayFor(modelItem => oi.LineValue)
+                                                                </td>
+                                                                <td class="text-xl-right">
+                                                                    @Html.DisplayFor(modelItem => oi.Price)
+                                                                </td>
+                                                                <td class="text-xl-right">
+                                                                    @Html.DisplayFor(modelItem => oi.Quantity)
+                                                                </td>
+                                                                <td class="text-xl-right">
+                                                                    @Html.DisplayFor(modelItem => oi.Item.Item_Name)
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    @********************order*************@
+                </td>
+                <td class="text-xl-right">
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td class="text-xl-right table-primary">
+                    @Html.DisplayFor(modelItem => item.Transaction_Name)
+                </td>
+                <td class="text-xl-right">
+                    @Html.DisplayFor(modelItem => item.Transaction_Date)
+                </td>
+                <td class="text-xl-right">
+                    @Html.DisplayFor(modelItem => item.Transaction_Types.Transaction_Type)
+                </td>
+                <td class="text-xl-right">
+                    @Html.DisplayFor(modelItem => item.PK_Transaction)
+                </td>
+            </tr>
+         }
+        </tbody>
+    </table>
+
+</div>

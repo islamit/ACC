@@ -1,0 +1,58 @@
+﻿@model ACC.Models.OrderItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LineValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LineValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Item_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.OrderNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.OrderNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PK_OrderItem }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

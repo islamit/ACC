@@ -1,0 +1,87 @@
+﻿USE [ACC]
+GO
+/****** Object:  Trigger [dbo].[Vouchers_tr]    Script Date: 4/3/2020 7:48:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER TRIGGER  [dbo].[Vouchers_tr]
+   ON   [dbo].[Vouchers]
+   AFTER  INSERT,DELETE,UPDATE 
+AS 
+BEGIN
+DECLARE @PK_Voucher bigint,
+		@FK_Transaction			bigint,
+		@FK_Transaction_Type	tinyint=1,
+		@Transaction_Date		datetime,
+		@Amount					money=0,
+        @UserID					nvarchar(128),
+		@FK_Account				nvarchar(128),
+		@Account_Name		    nvarchar(128),
+		@trans_desc 		    nvarchar(128)
+
+	        IF EXISTS(SELECT * FROM inserted  where Is_Delete is null or Is_Delete='0')
+			BEGIN
+			-- INSERT
+			select @Account_Name=Account_Name from Accounts where PK_Account=@PK_Voucher;
+			SELECT  @PK_Voucher=i.PK_Voucher,
+			@FK_Account=i.FK_Account,
+			@Transaction_Date=i.Insert_Date,
+			@Amount=isnull(i.Amount,0),@UserID=i.FK_Insert_User 
+			from INSERTED i inner join
+			Accounts a on i.FK_Account = a.PK_Account;
+			select @Account_Name=Account_Name from Accounts where PK_Account=@FK_Account
+			select @trans_desc =@Account_Name + ' -  '+ N'السندات'
+			EXEC	[dbo].[Transactions_Insert]
+					@PK_Transaction = @FK_Transaction OUTPUT,
+					@FK_Transaction_Type = 2,
+					@Transaction_Date = @Transaction_Date,
+					@FK_Account = @FK_Account ,
+					@Transaction_Name =@trans_desc  ,
+					@Amount = @Amount,
+					@FK_User = @UserID	
+			UPDATE [Vouchers] 
+			set FK_Transaction = @FK_Transaction
+			Where PK_Voucher=@PK_Voucher
+			END
+        ELSE IF  EXISTS(SELECT * FROM inserted  where not FK_Update_User  is null )
+            BEGIN
+            -- UPDATE
+			print ('UPDATE')
+			select @trans_desc = N'السندات'
+			SELECT  @FK_Transaction=i.FK_Transaction,
+			@FK_Account=i.FK_Account,
+			@Transaction_Date=i.Insert_Date,
+			@Amount=isnull(i.Amount,0),@UserID=i.FK_Update_User 
+			from INSERTED i inner join
+			Vouchers v on i.FK_Transaction = v.FK_Transaction;
+			select @Account_Name=Account_Name from Accounts where PK_Account=@FK_Account
+			select @trans_desc =@Account_Name + ' -  '+ N'السندات'
+
+			EXEC	[dbo].[Transactions_Update]
+					@PK_Transaction = @FK_Transaction,
+					@Transaction_Date = @Transaction_Date,
+					@FK_Account = @FK_Account,
+					@Transaction_Name =@trans_desc  ,
+					@Amount = @Amount,
+					@FK_User = @UserID	
+			END
+		ELSE IF  EXISTS(SELECT * FROM inserted  where not FK_Delete_User is null )
+		BEGIN
+        -- DELETE
+		print 'DELETE'
+		select @FK_Transaction=FK_Transaction,@UserID=FK_Delete_User from deleted 
+
+		print (convert(nvarchar, @FK_Transaction)+','+@UserID)
+		exec Transactions_Delete @FK_Transaction,@UserID
+		EXEC	 [dbo].[Transactions_Delete]
+		@PK_Transaction=@FK_Transaction,
+		@FK_User = @UserID
+	End
+
+
+    END
+
+
+ 

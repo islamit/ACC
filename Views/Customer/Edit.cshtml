@@ -1,0 +1,101 @@
+﻿@model ACC.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+ 
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h5 class="card-title text-right">@Resources.ACC.Customer</h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PK_Customer)
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Customer_Name, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FileNum, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.FileNum, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.FileNum, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDCard, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.IDCard, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.IDCard, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mobile1, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Mobile1, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Mobile1, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mobile2, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Mobile2, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Mobile2, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control pull-right" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+        <div class="form-group row">
+            <div class="col-md-10">
+                @Html.DropDownList("FK_Customer_Type", null, htmlAttributes: new { @class = "form-control pull-right" })
+                @Html.ValidationMessageFor(model => model.FK_Customer_Type, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(model => model.FK_Customer_Type, "تصنيف الزبون", htmlAttributes: new { @class = "control-label col-md-2 pull-right" })
+        </div>
+
+
+
+
+        <div class="form-group row pull-right">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit"  id="submit"  value="@Resources.ACC.Edit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

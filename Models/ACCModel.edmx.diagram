@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e67b6b494e04620b8e99a2f42b8bbaa" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ACCModel.Account_Types" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.AspNetRole" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.AspNetUser" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Customer" Width="1.5" PointX="14" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Customers_Type" Width="1.5" PointX="11.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Item" Width="1.5" PointX="11.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.OrderItem" Width="1.5" PointX="13.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Sales_Man" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Transaction_Types" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Transaction" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Voucher_Types" Width="1.5" PointX="9" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ACCModel.Voucher" Width="1.5" PointX="11.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ACCModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Transactions_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Transactions_AspNetUsers1" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Transactions_AspNetUsers2" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Customer_Customers_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_OrderItems_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Transactions_Transaction_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.FK_Vouchers_Voucher_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="ACCModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ACCModel.Order" Width="1.5" PointX="11.25" PointY="10" />
+        <AssociationConnector Association="ACCModel.FK_Order_Sales_Man" />
+        <AssociationConnector Association="ACCModel.FK_OrderItems_Order" />
+        <EntityTypeShape EntityType="ACCModel.Account" Width="1.5" PointX="6" PointY="19.25" />
+        <AssociationConnector Association="ACCModel.FK_Accounts_Account_Types" />
+        <AssociationConnector Association="ACCModel.FK_Order_Accounts" />
+        <AssociationConnector Association="ACCModel.FK_Transactions_Accounts" />
+        <AssociationConnector Association="ACCModel.FK_Vouchers_Accounts" />
+        <EntityTypeShape EntityType="ACCModel.Account_Categories" Width="1.5" PointX="3.75" PointY="20.75" />
+        <AssociationConnector Association="ACCModel.FK_Accounts_Account_Categories" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

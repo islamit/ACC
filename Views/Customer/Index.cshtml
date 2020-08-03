@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ACC.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="jumbotron">
+        <h1 class="card-title text-center">@Resources.ACC.Customer </h1>
+        <hr />
+        <!-- Search form -->
+        @using (Html.BeginForm())
+        {
+            <div dir="rtl">
+                <div class="form-group row">
+                    <div class="col-md-1">
+                        @Html.ActionLink("ALL ", "Index", new { area = "", max_results = 1000000 }, new { @class = "btn btn btn-secondary btn-sm" })
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <input class="btn blue-gradient btn-sm " type="submit" value="بحث" />
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBox("SearchString", null, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-5">
+                        @Html.ActionLink(" ", "Create", new { area = "" }, new { @class = "btn btn-success btn-sm fa fa-plus pull-left" })
+
+                    </div>
+                </div>
+                </div>
+        }
+        <hr />
+        <table dir="rtl" id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FileNum)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Customer_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Balance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Notes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Mobile1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        <td>
+
+                            <h5> @Html.DisplayFor(modelItem => item.FileNum)</h5>
+                        </td>
+                        <td>
+
+                            <h5>  @Html.DisplayFor(modelItem => item.Customer_Name)</h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </h5>
+                        </td>
+                        <td>
+                            <h5>
+                                @Html.DisplayFor(modelItem => item.Notes)
+                            </h5>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mobile1)
+                            <br />
+
+                            @Html.DisplayFor(modelItem => item.Mobile2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+
+                        <td>
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("System") || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink(" ", "Edit", new { id = item.PK_Customer }, new { @class = "btn btn-primary btn-sm fa fa-pencil" })
+                                }
+                                 
+                                @Html.ActionLink(" ", "Details_Ver2", new { id = item.PK_Customer }, new { @class = "btn btn-primary btn-sm fa fa-print" })
+                                if (User.IsInRole("System") || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink(" ", "Delete", new { id = item.PK_Customer }, new { @class = "btn  btn-sm btn-danger fa fa-eraser" })
+
+                                }
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
+
+
+
+
+
+

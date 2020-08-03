@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ACC.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div class="jumbotron">
+        <h1 class="card-title text-center">@Resources.ACC.Items</h1>
+        <hr />
+        <div dir="rtl">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    @Html.ActionLink("ALL ", "Index", new { area = "", max_results = 1000000 }, new { @class = "btn btn btn-secondary btn-sm pull-right" })
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink(" ", "Create", new { area = "" }, new { @class = "btn btn-success btn-sm fa fa-plus pull-left" })
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <table dir="rtl" id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="text-right">
+                        @Html.DisplayNameFor(model => model.Item_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Item_Price)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-right">
+                            <h3> @Html.DisplayFor(modelItem => item.Item_Name)</h3>
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Item_Price)
+                        </td>
+                        <td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("System") || User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink(" ", "Edit", new { id = item.PK_Item }, new { @class = "btn btn-primary  btn-sm fa fa-pencil" }) 
+                                    @Html.ActionLink(" ", "Details", new { id = item.PK_Item }, new { @class = "btn btn-default btn-sm fa fa-list" })  
+                                    @Html.ActionLink(" ", "Delete", new { id = item.PK_Item }, new { @class = "btn btn-danger btn-sm fa fa-eraser" })
+                        }
+                        }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
